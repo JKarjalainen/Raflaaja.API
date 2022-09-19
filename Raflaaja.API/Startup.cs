@@ -35,6 +35,7 @@ namespace Raflaaja.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors();
 
             app.UseHttpsRedirection();
 
