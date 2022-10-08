@@ -28,6 +28,7 @@ namespace Raflaaja.API
         public void ConfigureServices(IServiceCollection services)
         {            
             services.AddControllers();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +38,7 @@ namespace Raflaaja.API
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors();
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseHttpsRedirection();
 
