@@ -17,7 +17,9 @@ namespace Raflaaja.API.Controllers
         public IEnumerable<Order> Get()
         {
             using var db = new DatabaseContext();
-            return db.Orders.ToList();
+            List<Order> orders = db.Orders.ToList();
+            orders.ForEach(x => x.User = db.Users.Where(u => u.UserId == x.UserId).FirstOrDefault());
+            return orders;
         }
 
         // GET api/<OrdersController>/5
@@ -25,7 +27,7 @@ namespace Raflaaja.API.Controllers
         public Order Get(int id)
         {
             using var db = new DatabaseContext();
-            return db.Orders.Where(x => x.OrderId == id).FirstOrDefault();
+            return db.Orders.Where(x => x.UserId == id).FirstOrDefault();
         }
 
         // POST api/<OrdersController>
@@ -44,8 +46,8 @@ namespace Raflaaja.API.Controllers
             using var db = new DatabaseContext();
             Order o = db.Orders.Where(x => x.OrderId == id).FirstOrDefault();
             o.TimeOrdered = value.TimeOrdered;
-            o.User = value.User;
             o.Delivered = value.Delivered;
+            o.UserId = value.UserId;
 
             db.SaveChanges();
         }

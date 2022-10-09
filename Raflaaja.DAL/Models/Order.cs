@@ -13,6 +13,7 @@ namespace Raflaaja.DAL
 
         public DateTime TimeOrdered { get; set; }
         public bool Delivered { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
     }
 }
