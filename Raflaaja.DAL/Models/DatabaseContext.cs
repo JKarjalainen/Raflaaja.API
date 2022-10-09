@@ -23,7 +23,7 @@ namespace Raflaaja.DAL
         {
             modelBuilder.Entity<Product>().ToTable("Product");
             modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<Order>().ToTable("Order");
+            modelBuilder.Entity<Order>().ToTable("Order").Property(e => e.Delivered).HasConversion<int>();
             modelBuilder.Entity<Table>().ToTable("Table");
         }
 
