@@ -43,10 +43,10 @@ namespace Raflaaja.API.Controllers
         {
             using var db = new DatabaseContext();
             Order o = db.Orders.Where(x => x.OrderId == id).FirstOrDefault();
-            o.TimeDelivered = value.TimeDelivered;
-            o.OrderUser = value.OrderUser;
+            o.TimeOrdered = value.TimeOrdered;
+            o.User = value.User;
             o.Delivered = value.Delivered;
-            
+
             db.SaveChanges();
         }
 

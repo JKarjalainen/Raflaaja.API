@@ -29,8 +29,11 @@ namespace Raflaaja.API.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] User value)
         {
+            using var db = new DatabaseContext();
+            db.Users.Add(value);
+            db.SaveChanges();
         }
 
         // PUT api/<UsersController>/5

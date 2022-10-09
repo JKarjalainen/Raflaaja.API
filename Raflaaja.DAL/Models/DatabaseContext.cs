@@ -24,12 +24,15 @@ namespace Raflaaja.DAL
             modelBuilder.Entity<Product>().ToTable("Product");
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Order>().ToTable("Order");
+            modelBuilder.Entity<Table>().ToTable("Table");
         }
 
 
-        public DbSet<User> Users { get; set; }
+       
         public DbSet<Product> Products { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
-        
+        public DbSet<Table> Tables { get; set; }
+
     }
 }
