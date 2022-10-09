@@ -1,7 +1,7 @@
 <template>
     <ul>
-        <li><a href="#">Menu</a></li>
-        <li><a href="#">Reservations</a></li>
+        <li><router-link to="/">Menu</router-link></li>
+        <li><router-link to="/reservations">Reservations</router-link></li>
     </ul>
 </template>
 

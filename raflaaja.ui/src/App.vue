@@ -1,18 +1,12 @@
 <template>
-    <nav-bar />
-    <menu-list />
+    <router-link to="/">p</router-link>
+    <router-view></router-view>
 </template>
 
 <script>
-import MenuList from "@/components/MenuList";
-import NavBar from "@/components/NavBar";
 
 export default {
   name: 'App',
-  components: {
-      NavBar,
-      MenuList,
-  }
 }
 </script>
 
