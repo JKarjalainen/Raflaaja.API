@@ -11,6 +11,7 @@
     </select>
     <div v-if="validReservation">
         validReservation
+        <button @click="makeReservation()">Make Reservation</button>
     </div>
     <div v-else>
         not valid
@@ -55,11 +56,32 @@ export default {
                 isReserved = (wantedTime.isBetween(start, end) || wantedTime.isSame(start)) && time.tables.map(x => x.tableNumber).includes(this.wantedTable);
             }
             console.log({isReserved})
-             this.validReservation = !isReserved;
+            this.validReservation = !isReserved;
         },
-        async getOpenTables(date, time) {
-            return (date, time);
-        },
+        async makeReservation() {
+            let clockTime = this.reservationTime.split(":");
+            let hours = +clockTime[0];
+            let minutes = +clockTime[1];
+            let finalDate = moment(this.reservationDate).add(hours, "hours").add(minutes, "minutes");
+            console.log(clockTime);
+            let data = {
+                reservationId: Math.max(...this.reservations.map(x => x.reservationId)) + 1,
+                startTime: finalDate.format(),
+                numberOfPeople: 4,
+                userId: 1,
+                tableNumbers: [this.wantedTable]
+            }
+            console.log("a: " + data.startTime);
+            let res = fetch("https://localhost:44389/api/reservations/", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify(data)
+            });
+            console.log(res);
+        }
     },
     watch: {
         async reservationDate(newDate) {

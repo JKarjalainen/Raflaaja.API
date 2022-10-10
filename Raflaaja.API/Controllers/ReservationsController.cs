@@ -59,7 +59,7 @@ namespace Raflaaja.API.Controllers
             {
                 ReservationId = value.ReservationId,
                 StartTime = value.StartTime,
-                EndTime = new DateTime(value.StartTime.Year, value.StartTime.Month, value.StartTime.Day, value.StartTime.Hour + 1, value.StartTime.Minute, value.StartTime.Second),
+                EndTime = value.StartTime.AddHours(1),
                 NumberOfPeople = value.NumberOfPeople,
                 UserId = value.UserId,
 
