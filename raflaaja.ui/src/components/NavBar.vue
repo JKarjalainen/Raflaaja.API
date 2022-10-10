@@ -2,6 +2,7 @@
     <ul>
         <li><router-link to="/">Menu</router-link></li>
         <li><router-link to="/reservations">Reservations</router-link></li>
+        <li><router-link to="/shoppingcart">ShoppingCart</router-link></li>
     </ul>
 </template>
 
