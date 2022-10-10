@@ -9,8 +9,11 @@
             <option :value="table.tableNumber">Table {{table.tableNumber}} for {{table.size}} people</option>
         </template>
     </select>
-    <div v-if="reservationDate !== ''">
-
+    <div v-if="validReservation">
+        validReservation
+    </div>
+    <div v-else>
+        not valid
     </div>
 </template>
 
@@ -27,7 +30,8 @@ export default {
             openTimes: [],
             tables: [],
             reservationTime: "",
-            wantedTable: 0
+            wantedTable: 0,
+            validReservation: false
         }
     },
     async created() {
@@ -50,7 +54,8 @@ export default {
                 console.log({time});
                 isReserved = (wantedTime.isBetween(start, end) || wantedTime.isSame(start)) && time.tables.map(x => x.tableNumber).includes(this.wantedTable);
             }
-            console.log({isReserved});
+            console.log({isReserved})
+             this.validReservation = !isReserved;
         },
         async getOpenTables(date, time) {
             return (date, time);
