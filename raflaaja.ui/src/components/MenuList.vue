@@ -4,6 +4,7 @@
             <h><i>{{ product.name }}</i></h>
             <p>{{ product.description }}</p>
             <p>{{ product.price }}€</p>
+            <button @click="addProductToOrder(product.productId)">Lisää tilaukseen</button>
         </div>
     </div>
 </template>
@@ -13,15 +14,30 @@ export default {
     name: "MenuList",
     data() {
         return {
-            products: []
+            products: [],
+            order: []
         }
     },
+
+    watch: {
+        order(newOrder) {
+            localStorage.setItem("order", newOrder);
+            console.log("order");
+        }
+    },
+
     methods: {
         async getProducts() {
-            const response = await fetch("https://localhost:44389/api/products/");
+            const response = await fetch("https://localhost:5001/api/products/");
             this.products = await response.json();
+        },
+        
+        addProductToOrder(product) {
+            this.order = [...this.order, product]
         }
     },
+
+    
     async created() {
         await this.getProducts();
     }
