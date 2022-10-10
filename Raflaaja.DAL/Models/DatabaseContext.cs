@@ -27,7 +27,7 @@ namespace Raflaaja.DAL
             modelBuilder.Entity<Order>().Property(e => e.Delivered).HasConversion<int>();
             modelBuilder.Entity<Table>().ToTable("Table");
             modelBuilder.Entity<Reservation>().ToTable("Reservation").HasOne(x => x.User).WithMany();
-            modelBuilder.Entity<Reserved>().ToTable("Reserved").HasNoKey();
+            modelBuilder.Entity<Reserved>().ToTable("Reserved");
         }
 
 

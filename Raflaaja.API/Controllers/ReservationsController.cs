@@ -5,6 +5,7 @@ using Raflaaja.DAL;
 using Raflaaja.DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -51,10 +52,24 @@ namespace Raflaaja.API.Controllers
 
         // POST api/<ReservationsController>
         [HttpPost]
-        public void Post([FromBody] Reservation value)
+        public void Post([FromBody] NewReservationObject value)
         {
             using var db = new DatabaseContext();
-            db.Reservations.Add(value);
+            Reservation newReservation = new Reservation()
+            {
+                ReservationId = value.ReservationId,
+                StartTime = value.StartTime,
+                EndTime = new DateTime(value.StartTime.Year, value.StartTime.Month, value.StartTime.Day, value.StartTime.Hour + 1, value.StartTime.Minute, value.StartTime.Second),
+                NumberOfPeople = value.NumberOfPeople,
+                UserId = value.UserId,
+
+            };
+            db.Reservations.Add(newReservation);
+            foreach(var table in value.TableNumbers)
+            {
+                db.Reserved.Add(new Reserved() { ReservationId = value.ReservationId, TableNumber = table });
+            }
+            
             db.SaveChanges();
         }
 
@@ -70,5 +85,13 @@ namespace Raflaaja.API.Controllers
         {
         }
 
+    }
+    public class NewReservationObject
+    {
+        public int ReservationId { get; set; }
+        public DateTime StartTime { get; set; }
+        public int NumberOfPeople { get; set; }
+        public int UserId { get; set; }
+        public List<int> TableNumbers { get; set; }
     }
 }
