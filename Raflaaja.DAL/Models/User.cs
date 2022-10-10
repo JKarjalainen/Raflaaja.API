@@ -13,5 +13,6 @@ namespace Raflaaja.DAL
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int AccessLevel { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

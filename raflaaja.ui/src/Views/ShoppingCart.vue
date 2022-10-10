@@ -25,7 +25,7 @@ export default {
 
     methods: {
       async getProducts() {
-        const response = await fetch("https://localhost:5001/api/products/");
+        const response = await fetch("https://localhost:44389/api/products/");
         let allproducts = await response.json();
         for (let e of this.order) {
           this.products.push(allproducts.find(x => x.productId == e));

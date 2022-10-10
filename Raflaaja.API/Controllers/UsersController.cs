@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Raflaaja.DAL;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Raflaaja.API.Controllers
         public IEnumerable<User> Get()
         {
             using var db = new DatabaseContext();
-            return db.Users.ToList();
+            return db.Users.Include(x => x.Orders).ToList();
         }
 
         // GET api/<UsersController>/5

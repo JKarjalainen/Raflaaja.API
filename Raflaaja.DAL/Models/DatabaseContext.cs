@@ -22,9 +22,12 @@ namespace Raflaaja.DAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().ToTable("Product");
-            modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<Order>().ToTable("Order").Property(e => e.Delivered).HasConversion<int>();
+            modelBuilder.Entity<Order>().ToTable("Order");
+            modelBuilder.Entity<User>().ToTable("User").HasMany(x => x.Orders).WithOne();
+            modelBuilder.Entity<Order>().Property(e => e.Delivered).HasConversion<int>();
             modelBuilder.Entity<Table>().ToTable("Table");
+            modelBuilder.Entity<Reservation>().ToTable("Reservation").HasOne(x => x.User).WithMany();
+            modelBuilder.Entity<Reserved>().ToTable("Reserved").HasNoKey();
         }
 
 
@@ -33,6 +36,8 @@ namespace Raflaaja.DAL
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Table> Tables { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Reserved> Reserved { get; set; }
 
     }
 }

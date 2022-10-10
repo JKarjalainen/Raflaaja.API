@@ -28,7 +28,7 @@ export default {
 
     methods: {
         async getProducts() {
-            const response = await fetch("https://localhost:5001/api/products/");
+            const response = await fetch("https://localhost:44389/api/products/");
             this.products = await response.json();
         },
         

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Raflaaja.DAL;
 using Raflaaja.DAL.Models;
 using System.Collections.Generic;
@@ -18,16 +19,15 @@ namespace Raflaaja.API.Controllers
         {
             using var db = new DatabaseContext();
             List<Order> orders = db.Orders.ToList();
-            orders.ForEach(x => x.User = db.Users.Where(u => u.UserId == x.UserId).FirstOrDefault());
             return orders;
         }
 
         // GET api/<OrdersController>/5
         [HttpGet("{id}")]
-        public Order Get(int id)
+        public List<Order> Get(int id)
         {
             using var db = new DatabaseContext();
-            return db.Orders.Where(x => x.UserId == id).FirstOrDefault();
+            return db.Orders.Where(x => x.UserId == id).ToList();
         }
 
         // POST api/<OrdersController>
