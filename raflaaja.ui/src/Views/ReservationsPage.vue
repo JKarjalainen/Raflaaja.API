@@ -3,6 +3,12 @@
     <p>Reservations</p>
     <input type="date" v-model="reservationDate" />
     <input type="time" min="09:00" max="22:00" v-model="reservationTime"/>
+    Table number:
+    <select v-model="wantedTable" name="cars">
+        <template v-for="table in tables" :key="table.tableNumber">
+            <option :value="table.tableNumber">Table {{table.tableNumber}} for {{table.size}} people</option>
+        </template>
+    </select>
     <div v-if="reservationDate !== ''">
 
     </div>
@@ -19,7 +25,9 @@ export default {
             reservations: [],
             reservationDate: "",
             openTimes: [],
-            reservationTime: ""
+            tables: [],
+            reservationTime: "",
+            wantedTable: 0
         }
     },
     async created() {
@@ -27,6 +35,8 @@ export default {
         let res = await fetch("https://localhost:44389/api/reservations/")
         let data = await res.json();
         this.reservations = data;
+        let tablesReq = await fetch("https://localhost:44389/api/tables/");
+        this.tables = await tablesReq.json();
     },
     methods: {
         async getOpenTimes(date) {
@@ -37,7 +47,8 @@ export default {
                 let start = moment(time.startTime);
                 let end = moment(time.endTime);
                 console.log({start, end, wantedTime})
-                isReserved = wantedTime.isBetween(start, end) || wantedTime.isSame(start)
+                console.log({time});
+                isReserved = (wantedTime.isBetween(start, end) || wantedTime.isSame(start)) && time.tables.map(x => x.tableNumber).includes(this.wantedTable);
             }
             console.log({isReserved});
         },
