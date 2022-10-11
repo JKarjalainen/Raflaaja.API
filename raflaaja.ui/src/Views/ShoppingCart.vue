@@ -1,12 +1,15 @@
 <template>
     <nav-bar></nav-bar>
+    <div v-if="products.length < 1">Ostoskorisi on tyhä</div>
     <div v-for="product in products" v-bind:key="product" class="prod">
         <h><i>{{ product.name }}</i></h>
         <p>{{ product.description }}</p>
         <p>{{ product.price }}€</p>
     </div>
-    <p>Yhteensä: {{ getFullPrice() }}€</p>
-    <button @click="addOrder()">Tilaa</button>
+    <div v-if="order.length > 0">
+        <p>Yhteensä: {{ getFullPrice() }}€</p>
+        <button @click="addOrder()">Tilaa</button>
+    </div>
 </template>
 
 <script>
@@ -43,12 +46,12 @@ export default {
         async addOrder() {
             let distinctProducts = [...new Set(this.order)];
             let includedProductIds = [];
-            for(let prodId of distinctProducts) {
+            for (let prodId of distinctProducts) {
                 console.log(prodId)
                 includedProductIds.push({productId: +prodId, amount: this.order.filter(id => id === prodId).length});
             }
             console.log({includedProductIds});
-            let res = await fetch("https://localhost:44389/api/orders/", {
+            await fetch("https://localhost:44389/api/orders/", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -56,14 +59,16 @@ export default {
                 },
                 body: JSON.stringify(includedProductIds)
             });
-            let data = await res.json();
-            console.log(data);
 
+            localStorage.clear();
+            this.order = [];
+            this.products = [];
         }
 
     },
     async created() {
-        this.order = localStorage.getItem("order").split(",");
+        let storage = localStorage.getItem("order")
+        this.order = storage !== null ? storage.split(",") : [];
         console.log(this.order);
         console.log(typeof (this.order));
         await this.getProducts();
@@ -79,6 +84,9 @@ export default {
     align-self: center;
 }
 
+div {
+    padding: 30px;
+}
 
 
 </style>

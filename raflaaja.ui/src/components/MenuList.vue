@@ -33,13 +33,19 @@ export default {
         },
         
         addProductToOrder(product) {
-            this.order = [...this.order, product]
+            if(this.order.length < 1)
+                this.order = [product]
+            else
+                this.order = [...this.order, product]
         }
     },
 
     
     async created() {
         await this.getProducts();
+        let storage = localStorage.getItem("order");
+        let data = storage.split(",")
+        this.order = data;
     }
 }
 </script>
