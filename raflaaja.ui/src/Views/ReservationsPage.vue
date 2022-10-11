@@ -39,10 +39,10 @@ export default {
     },
     async created() {
         console.log(moment())
-        let res = await fetch("https://localhost:44389/api/reservations/")
+        let res = await fetch("https://localhost:5001/api/reservations/")
         let data = await res.json();
         this.reservations = data;
-        let tablesReq = await fetch("https://localhost:44389/api/tables/");
+        let tablesReq = await fetch("https://localhost:5001/api/tables/");
         this.tables = await tablesReq.json();
     },
     methods: {
@@ -81,7 +81,7 @@ export default {
                 tableNumbers: [this.wantedTable]
             }
             console.log("a: " + data.startTime);
-            let res = fetch("https://localhost:44389/api/reservations/", {
+            let res = fetch("https://localhost:5001/api/reservations/", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -111,4 +111,5 @@ export default {
 p {
     padding: 20px;
 }
+
 </style>
