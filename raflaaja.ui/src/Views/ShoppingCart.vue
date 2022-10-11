@@ -1,15 +1,23 @@
 <template>
     <nav-bar></nav-bar>
+  <div class="hero-image">
+    <div class="hero-text">
+      <h1 style="font-size:50px; -webkit-text-stroke: 1.5px black;" >Tilauksesi</h1>
+    </div>
+  </div>
+  <div class="bg">
     <div v-if="products.length < 1" style="margin-top: 80px">Ostoskorisi on tyhjä</div>
     <div v-for="product in products" v-bind:key="product" class="prod">
-        <h><i>{{ product.name }}</i></h>
-        <p>{{ product.description }}</p>
-        <p>{{ product.price }}€</p>
+      <h><i>{{ product.name }}</i></h>
+      <p>{{ product.description }}</p>
+      <p>{{ product.price }}€</p>
     </div>
     <div v-if="order.length > 0">
-        <p>Yhteensä: {{ getFullPrice() }}€</p>
-        <button @click="addOrder()">Tilaa</button>
+      <p>Yhteensä: {{ getFullPrice() }}€</p>
+      <button @click="addOrder()">Tilaa</button>
     </div>
+  </div>
+
 </template>
 
 <script>
@@ -118,6 +126,39 @@ button:active {
   button {
     padding: 0.25em 0.75em;
   }
+}
+.hero-image {
+  background-image: url("@/assets/Table2.jpg");
+  background-color: #cccccc;
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  margin-top: 30px;
+
+}
+router-link {
+  text-decoration: none;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+h1 {
+  font-family:Helvetica;
+  font-size: 60px;
+  text-align: center;
+  color: white;
+  margin: 20px;
+}
+.bg {
+  background-color: floralwhite;
 }
 
 </style>
