@@ -68,9 +68,13 @@ div {
 }
 #product-container {
     display: flex;
-    margin-top: 50px;
     flex-direction: column;
     justify-content: flex-end;
+    background-color: lightblue;
+    width: 70%;
+    margin: auto;
+    width: 70%;
+    padding: 10px;
 }
 button {
   font-family:Helvetica;
