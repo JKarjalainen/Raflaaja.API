@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Raflaaja.DAL;
 using Raflaaja.DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -38,20 +39,20 @@ namespace Raflaaja.API.Controllers
 
         // POST api/<OrdersController>
         [HttpPost]
-        public void Post([FromBody] NewOrderObject value)
+        public void Post([FromBody] List<ProductWithAmount> values)
         {
             using var db = new DatabaseContext();
 
             var newOrder = new Order()
             {
                 OrderId = db.Orders.Max(x => x.OrderId) + 1,
-                TimeOrdered = new System.DateTime(),
+                TimeOrdered = DateTime.Now,
                 UserId = 1,
                 Delivered = false,
                 OrderIncludes = new List<OrderIncludes>()
             };
             
-            foreach(var prod in value.IncludedProductIds)
+            foreach(var prod in values)
             {
                 newOrder.OrderIncludes.Add(new OrderIncludes() { Amount = prod.Amount, ProductId = prod.ProductId });
             }
