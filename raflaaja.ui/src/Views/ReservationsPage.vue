@@ -10,11 +10,12 @@
         </template>
     </select>
     <div v-if="validReservation">
-        validReservation
-        <button @click="makeReservation()">Make Reservation</button>
+        <p>Vapaa aika</p>
+        <button @click="makeReservation()">Tee varaus</button>
     </div>
     <div v-else>
-        not valid
+
+        <p>Tämä aika on jo varattu tai et ole täyttänyt kenttiä</p>
     </div>
 </template>
 
@@ -45,7 +46,10 @@ export default {
     },
     methods: {
         async getOpenTimes(date) {
-            let wantedTime = moment(date);
+            let clockTime = this.reservationTime.split(":");
+            let hours = +clockTime[0];
+            let minutes = +clockTime[1];
+            let wantedTime = moment(date).add(hours, "hours").add(minutes, "minutes");
             console.log({wantedTime});
             let isReserved = false;
             for(let time of this.reservations) {
@@ -53,10 +57,14 @@ export default {
                 let end = moment(time.endTime);
                 console.log({start, end, wantedTime})
                 console.log({time});
+                console.log(wantedTime.isBetween(start, end))
+                console.log(wantedTime.isSame(start))
+                console.log(time.tables.map(x => x.tableNumber).includes(this.wantedTable))
                 isReserved = (wantedTime.isBetween(start, end) || wantedTime.isSame(start)) && time.tables.map(x => x.tableNumber).includes(this.wantedTable);
             }
+            let isFilled = this.reservationDate !== "" && this.reservationTime !== "" && this.wantedTable !== 0;
             console.log({isReserved})
-            this.validReservation = !isReserved;
+            this.validReservation = !isReserved && isFilled;
         },
         async makeReservation() {
             let clockTime = this.reservationTime.split(":");
@@ -86,6 +94,12 @@ export default {
     watch: {
         async reservationDate(newDate) {
             await this.getOpenTimes(newDate);
+        },
+        async wantedTable() {
+            await this.getOpenTimes(this.reservationDate);
+        },
+        async reservationTime() {
+            await this.getOpenTimes(this.reservationDate);
         }
     }
 }
