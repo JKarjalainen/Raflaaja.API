@@ -45,7 +45,6 @@ namespace Raflaaja.API.Controllers
 
             var newOrder = new Order()
             {
-                OrderId = db.Orders.Max(x => x.OrderId) + 1,
                 TimeOrdered = DateTime.Now,
                 UserId = 1,
                 Delivered = false,

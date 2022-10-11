@@ -57,7 +57,6 @@ namespace Raflaaja.API.Controllers
             using var db = new DatabaseContext();
             Reservation newReservation = new Reservation()
             {
-                ReservationId = value.ReservationId,
                 StartTime = value.StartTime,
                 EndTime = value.StartTime.AddHours(1),
                 NumberOfPeople = value.NumberOfPeople,
@@ -65,9 +64,10 @@ namespace Raflaaja.API.Controllers
 
             };
             db.Reservations.Add(newReservation);
-            foreach(var table in value.TableNumbers)
+            db.SaveChanges();
+            foreach (var table in value.TableNumbers)
             {
-                db.Reserved.Add(new Reserved() { ReservationId = value.ReservationId, TableNumber = table });
+                db.Reserved.Add(new Reserved() { ReservationId = newReservation.ReservationId, TableNumber = table });
             }
             
             db.SaveChanges();
@@ -88,7 +88,6 @@ namespace Raflaaja.API.Controllers
     }
     public class NewReservationObject
     {
-        public int ReservationId { get; set; }
         public DateTime StartTime { get; set; }
         public int NumberOfPeople { get; set; }
         public int UserId { get; set; }
