@@ -18,7 +18,10 @@ namespace Raflaaja.API.Controllers
         public IEnumerable<Order> Get()
         {
             using var db = new DatabaseContext();
-            List<Order> orders = db.Orders.ToList();
+            List<Order> orders = db.Orders
+                .Include(x => x.OrderIncludes)
+                .ThenInclude(x => x.Product)
+                .ToList();
             return orders;
         }
 
@@ -27,15 +30,33 @@ namespace Raflaaja.API.Controllers
         public List<Order> Get(int id)
         {
             using var db = new DatabaseContext();
-            return db.Orders.Where(x => x.UserId == id).ToList();
+            return db.Orders
+                .Include(x => x.OrderIncludes)
+                .ThenInclude(x => x.Product)
+                .Where(x => x.UserId == id).ToList();
         }
 
         // POST api/<OrdersController>
         [HttpPost]
-        public void Post([FromBody] Order value)
+        public void Post([FromBody] NewOrderObject value)
         {
             using var db = new DatabaseContext();
-            db.Orders.Add(value);
+
+            var newOrder = new Order()
+            {
+                OrderId = db.Orders.Max(x => x.OrderId) + 1,
+                TimeOrdered = new System.DateTime(),
+                UserId = 1,
+                Delivered = false,
+                OrderIncludes = new List<OrderIncludes>()
+            };
+            
+            foreach(var prod in value.IncludedProductIds)
+            {
+                newOrder.OrderIncludes.Add(new OrderIncludes() { Amount = prod.Amount, ProductId = prod.ProductId });
+            }
+
+            db.Orders.Add(newOrder);
             db.SaveChanges();
         }
 
@@ -61,5 +82,14 @@ namespace Raflaaja.API.Controllers
             db.Orders.Remove(o);
             db.SaveChanges();
         }
+    }
+    public class NewOrderObject
+    {
+        public List<ProductWithAmount> IncludedProductIds { get; set; }
+    }
+    public class ProductWithAmount
+    {
+        public int ProductId { get; set; }
+        public int Amount { get; set; }
     }
 }
