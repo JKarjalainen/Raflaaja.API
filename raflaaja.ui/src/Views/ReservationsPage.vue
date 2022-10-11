@@ -1,12 +1,12 @@
 <template>
     <nav-bar></nav-bar>
-    <p>Reservations</p>
+    <p>Varaa pöytä</p>
     <input type="date" v-model="reservationDate" />
     <input type="time" min="09:00" max="22:00" v-model="reservationTime"/>
-    Table number:
+    Pöytä:
     <select v-model="wantedTable" name="cars">
         <template v-for="table in tables" :key="table.tableNumber">
-            <option :value="table.tableNumber">Table {{table.tableNumber}} for {{table.size}} people</option>
+            <option :value="table.tableNumber">Pöytä {{table.tableNumber}} koko {{table.size}} henkilöä</option>
         </template>
     </select>
     <div v-if="validReservation">
