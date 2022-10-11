@@ -29,6 +29,7 @@
     <br>
     <br>
   </div>
+  <footer-bar></footer-bar>
 
 </template>
 
@@ -36,9 +37,10 @@
 import NavBar from "@/components/NavBar";
 import moment from "moment";
 import swal from "sweetalert";
+import FooterBar from "@/components/FooterBar";
 export default {
     name: "ReservationsPage",
-    components: {NavBar},
+    components: {NavBar,FooterBar},
     data() {
         return {
             reservations: [],

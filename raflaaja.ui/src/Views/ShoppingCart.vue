@@ -17,16 +17,17 @@
       <button @click="addOrder()">Tilaa</button>
     </div>
   </div>
-
+  <footer-bar></footer-bar>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar";
 import swal from "sweetalert";
+import FooterBar from "@/components/FooterBar";
 
 export default {
     name: "ShoppingCart",
-    components: {NavBar},
+    components: {NavBar,FooterBar},
     data() {
         return {
             products: [],
@@ -109,6 +110,7 @@ button {
   cursor: pointer;
   border: 3px solid;
   padding: 0.25em 0.5em;
+  margin-bottom: 20px;
   box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
   position: relative;
   user-select: none;

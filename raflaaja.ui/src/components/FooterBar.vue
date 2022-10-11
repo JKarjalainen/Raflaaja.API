@@ -22,6 +22,9 @@ footer {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
 
 </style>
