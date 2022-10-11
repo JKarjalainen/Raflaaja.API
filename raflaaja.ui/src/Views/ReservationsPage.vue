@@ -22,6 +22,7 @@
 <script>
 import NavBar from "@/components/NavBar";
 import moment from "moment";
+import swal from "sweetalert";
 export default {
     name: "ReservationsPage",
     components: {NavBar},
@@ -89,6 +90,7 @@ export default {
                 body: JSON.stringify(data)
             });
             console.log(res);
+            swal("Varaus tehtiin onnistuneesti ajalle " + finalDate.format("DD-MM-YYYY HH:mm"));
         }
     },
     watch: {

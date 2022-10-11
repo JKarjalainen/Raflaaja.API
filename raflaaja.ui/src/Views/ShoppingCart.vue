@@ -1,6 +1,6 @@
 <template>
     <nav-bar></nav-bar>
-    <div v-if="products.length < 1">Ostoskorisi on tyhä</div>
+    <div v-if="products.length < 1">Ostoskorisi on tyhjä</div>
     <div v-for="product in products" v-bind:key="product" class="prod">
         <h><i>{{ product.name }}</i></h>
         <p>{{ product.description }}</p>
@@ -14,6 +14,7 @@
 
 <script>
 import NavBar from "@/components/NavBar";
+import swal from "sweetalert";
 
 export default {
     name: "ShoppingCart",
@@ -63,6 +64,7 @@ export default {
             localStorage.clear();
             this.order = [];
             this.products = [];
+            swal({icon: "success", text: "Tilaus on lähetetty ravintolalle"})
         }
 
     },

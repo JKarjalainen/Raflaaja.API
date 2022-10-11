@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import swal from "sweetalert";
 export default {
     name: "MenuList",
     data() {
@@ -23,6 +24,7 @@ export default {
         order(newOrder) {
             localStorage.setItem("order", newOrder);
             console.log("order");
+
         }
     },
 
@@ -37,6 +39,11 @@ export default {
                 this.order = [product]
             else
                 this.order = [...this.order, product]
+
+            swal("Tuote lisätty tilaukseen", {
+                buttons: false,
+                timer: 1000,
+            });
         }
     },
 
