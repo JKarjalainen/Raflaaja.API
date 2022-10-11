@@ -6,17 +6,69 @@
         <button><router-link to="/menu" style="text-decoration: none; color: black">Tilaa nyt!</router-link></button>
       </div>
     </div>
+    <h2>Suosituimmat tuotteemme</h2>
+    <div class="flex-container">
+      <div class="card">
+        <div class="container">
+          <h4><b>Pepperoni pizza</b></h4>
+          <p>vitun hyvä pizza</p>
+          <p>9€</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="container">
+          <h4><b>Talon burgeri</b></h4>
+          <p>vitun hyvä bursa</p>
+          <p>8€</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="container">
+          <h4><b>Naudan ulkofile</b></h4>
+          <p>vitun hyvä pihvi</p>
+          <p>17€</p>
+        </div>
+      </div>
+    </div>
+
+  <footer-bar></footer-bar>
+
 </template>
 
 <script>
 import NavBar from "@/components/NavBar";
+import FooterBar from "@/components/FooterBar";
 export default {
     name: "RealHomePage",
-    components: {NavBar}
+    components: {NavBar, FooterBar}
 }
 </script>
 
 <style scoped>
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.flex-container > div {
+  text-align: center;
+  font-size: 30px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
 
 div {
   font-size: 20px;

@@ -1,6 +1,6 @@
 <template>
     <nav-bar></nav-bar>
-    <div v-if="products.length < 1">Ostoskorisi on tyhjä</div>
+    <div v-if="products.length < 1" style="margin-top: 80px">Ostoskorisi on tyhjä</div>
     <div v-for="product in products" v-bind:key="product" class="prod">
         <h><i>{{ product.name }}</i></h>
         <p>{{ product.description }}</p>
