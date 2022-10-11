@@ -1,6 +1,7 @@
 <template>
     <ul>
-        <li><router-link to="/">Ruokalista</router-link></li>
+        <li><router-link to="/">Koti</router-link></li>
+        <li><router-link to="/menu">Ruokalista</router-link></li>
         <li><router-link to="/reservations">Varaa pöytä</router-link></li>
         <li><router-link to="/shoppingcart">Tilauksesi</router-link></li>
     </ul>
