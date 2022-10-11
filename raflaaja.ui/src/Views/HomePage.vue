@@ -20,8 +20,14 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  background-image: url("@/assets/Pizza.jpg");
+
+body {
+  background: url("@/assets/Pizza.jpg") no-repeat center center
+  fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 </style>

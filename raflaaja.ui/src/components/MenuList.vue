@@ -1,4 +1,7 @@
 <template>
+  <div>
+
+  </div>
     <div id="product-container">
         <div v-for="product in products" v-bind:key="product" class="prod">
             <h><i>{{ product.name }}</i></h>
@@ -51,13 +54,15 @@ export default {
     async created() {
         await this.getProducts();
         let storage = localStorage.getItem("order");
-        let data = storage.split(",")
+        let data = storage.split(",");
         this.order = data;
     }
 }
 </script>
 
 <style scoped>
+
+
 div {
   font-size: 20px;
 }
@@ -70,7 +75,7 @@ div {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background-color: lightblue;
+    background-color: floralwhite;
     width: 70%;
     margin: auto;
     width: 70%;

@@ -6,7 +6,7 @@
         <button><router-link to="/menu" style="text-decoration: none; color: black">Tilaa nyt!</router-link></button>
       </div>
     </div>
-    <h2>Suosituimmat tuotteemme</h2>
+    <h2 style="text-align: center">Suosituimmat tuotteemme</h2>
     <div class="flex-container">
       <div class="card">
         <div class="container">

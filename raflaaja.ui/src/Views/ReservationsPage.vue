@@ -1,22 +1,35 @@
 <template>
     <nav-bar></nav-bar>
-    <p>Varaa pöytä</p>
+  <div class="hero-image">
+    <div class="hero-text">
+      <h1 style="font-size:50px; -webkit-text-stroke: 1.5px black;" >Varaa pöytä</h1>
+    </div>
+  </div>
+  <div class="varaus">
+    <h3>Päivänmäärä</h3>
     <input type="date" v-model="reservationDate" />
+    <h3>Kellonaika</h3>
     <input type="time" min="09:00" max="22:00" v-model="reservationTime"/>
-    Pöytä:
+    <h3>Pöytä</h3>
     <select v-model="wantedTable" name="cars">
-        <template v-for="table in tables" :key="table.tableNumber">
-            <option :value="table.tableNumber">Pöytä {{table.tableNumber}} koko {{table.size}} henkilöä</option>
-        </template>
+      <template v-for="table in tables" :key="table.tableNumber">
+        <option :value="table.tableNumber">Pöytä {{table.tableNumber}} koko {{table.size}} henkilöä</option>
+      </template>
     </select>
     <div v-if="validReservation">
-        <p>Vapaa aika</p>
-        <button @click="makeReservation()">Tee varaus</button>
+      <p>Vapaa aika</p>
+      <button @click="makeReservation()">Tee varaus</button>
     </div>
+
     <div v-else>
 
-        <p>Tämä aika on jo varattu tai et ole täyttänyt kenttiä</p>
+      <p>Tämä aika on jo varattu tai et ole täyttänyt kenttiä</p>
     </div>
+    <br>
+    <br>
+    <br>
+  </div>
+
 </template>
 
 <script>
@@ -111,5 +124,72 @@ export default {
 p {
     padding: 20px;
 }
+.varaus {
+  text-align: center;
+}
+.hero-image {
+  background-image: url("@/assets/Table.jpg");
+  background-color: #cccccc;
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  margin-top: 30px;
 
+}
+router-link {
+  text-decoration: none;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+h1 {
+  font-family:Helvetica;
+  font-size: 30px;
+}
+input, select {
+  width: 51%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  font-family:Helvetica;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  button {
+    padding: 0.25em 0.75em;
+  }
+}
 </style>
