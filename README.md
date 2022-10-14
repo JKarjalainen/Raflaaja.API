@@ -6,7 +6,7 @@ Ohjelmistotuotantoprojekti 1 ryhmä R9
 
 ## Visio
 
-Visiomme oli tehdä keksitylle ravintolalle kotisivut, josta voisi varata pöydän ja tehä tilauksia. Tarkoituksena oli myös olla admin sivut joista pystyisi näkemään kaikki tehdyt tilaukset sekä pöytävaraukset. Tätä emme kuintenkaan ehiteen toteuttamaan tällä kurssilla. 
+Visiomme oli tehdä keksitylle ravintolalle kotisivut, josta voisi varata pöydän ja tehdä tilauksia. Tarkoituksena oli myös olla admin sivut, joista pystyisi näkemään kaikki tehdyt tilaukset sekä pöytävaraukset. Tätä emme kuitenkaan ehtineet toteuttamaan tällä kurssilla.
 
 
 ## Kehitysympäristö
