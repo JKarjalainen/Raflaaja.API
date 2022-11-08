@@ -87,14 +87,15 @@ export default {
           this.orderitems = true;
       }
     },
-    async created() {
+   
+  },
+  async created() {
         let storage = localStorage.getItem("order")
         this.order = storage !== null ? storage.split(",") : [];
         console.log(this.order);
         console.log(typeof (this.order));
         await this.getProducts();
     }
-  }
   
 }
 </script>
