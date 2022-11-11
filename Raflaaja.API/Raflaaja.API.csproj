@@ -17,6 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Raflaaja.DAL\Raflaaja.DAL.csproj" />
   </ItemGroup>
-
+	<Target Name="VSTest" />
 
 </Project>
