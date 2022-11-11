@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                git 'https://github.com/JKarjalainen/Raflaaja.API.git'
+                bat 'dotnet restore'
+                bat 'dotnet build'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing backend'
+                bat 'dotnet test'
+            }
+        }
+    }
+}
