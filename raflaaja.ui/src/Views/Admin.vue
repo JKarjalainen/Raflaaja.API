@@ -1,6 +1,6 @@
 <template>
     
-    <h2 style="text-align: center">hej på dej, Admin(username)</h2>
+    <h2 style="text-align: center">Hello, Admin(username)</h2>
     <div class="flex-container">
       <div class="card">
         <div class="container">
@@ -18,13 +18,14 @@
         </div>
       </div>
     </div>
-
     <div v-if="menuitems == true">
       <div v-if="products.length < 1" style="margin-top: 80px">You have no menu items</div>
       <div v-for="product in products" v-bind:key="product" class="prod">
-        <h><i>{{ product.name }}</i></h>
-        <p>{{ product.description }}</p>
-        <p>{{ product.price }}€</p>
+        <input type="text" :value= product.name >
+        <input type="text" :value= product.description>
+        <input type="text" :value= product.price>
+        <button>Set changes</button>
+        <button @click="DeleteItem($event)">Delete</button>
       </div>
     </div>
     <div v-if="tableitems == true">
@@ -38,9 +39,13 @@
     <div v-if="orderitems == true">
       <div v-if="orders.length < 1" style="margin-top: 80px">You have no orders</div>
       <div v-for="order in orders" v-bind:key="order" class="prod">
-        <h><i>{{ order.name }}</i></h>
-        <p>{{ order.description }}</p>
-        <p>{{ order.price }}€</p>
+        <h><i>{{ order.username }}</i></h>
+        <div v-for="product in order.products" v-bind:key="product" class="prod">
+          <h><i>{{ product.name }}</i></h>
+          <p>{{ product.description }}</p>
+          <p>{{ product.price }}€</p>
+      </div>
+        <p>{{ order.total() }}€</p>
       </div>
     </div>
    
@@ -49,6 +54,8 @@
 </template>
 
 <script>
+//import test from 'node:test';
+
 export default {
     name: "Admin-page",
     components: {},
@@ -59,9 +66,53 @@ export default {
             tables: [],
             menuitems: false,
             tableitems: false,
-            orderitems: false
-        }
-    },
+            orderitems: false,
+
+
+
+
+
+           
+           testMenuItem: {
+              name:"testituote",
+              description:"Testituotteen kuvaus",
+              price:9.99
+            },
+            testOrderItem:{
+              username:"Matti Meikäläinen",
+              products:[],
+              total: function() {
+                let tot = 0;
+                //ei halunnu toimia for in loopil XD
+                for (let i = 0; i<this.products.length;i++){
+                  tot = tot + this.products[i].price;
+                  console.log(tot)
+                }
+                return tot
+              },
+              setProd: function(prod) {
+                this.products[this.products.length] = prod
+                this.total()
+              }
+            },
+            testOrderItem2:{
+              username:"Maija Meikäläinen",
+              products:[],
+              total: function() {
+                let tot = 0;
+                for (let i = 0; i<this.products.length;i++){
+                  tot = tot + this.products[i].price;
+                  console.log(tot)
+                }
+                return tot
+              },
+              setProd: function(prod) {
+                this.products[this.products.length] = prod
+                this.total()
+              }
+            }
+    }
+  },
     methods:{
       async getProducts() {
             const response = await fetch("https://localhost:5001/api/products/");
@@ -69,7 +120,7 @@ export default {
             for (let e of this.order) {
                 this.products.push(allproducts.find(x => x.productId == e));
             }
-            console.log(this.products);
+            
         },
 
       changeClick: function(event){
@@ -87,13 +138,38 @@ export default {
           this.orderitems = true;
       }
     },
+
+
+
+
+
+
+    DeleteItem: function(event){
+      let parent = event.target.parentElement
+      parent.style = "opacity:0.5;pointer-events: none"
+
+      //tähän jotain tietokanta poisto juttuu emt
+
+    }
+
+ 
    
   },
   async created() {
+        this.products[0] = this.testMenuItem
+        this.testOrderItem.setProd(this.products[0])
+        this.testOrderItem2.setProd(this.products[0])
+        this.testOrderItem2.setProd(this.products[0])
+        this.testOrderItem2.setProd(this.products[0])
+        this.orders[0] = this.testOrderItem
+        this.orders[1] = this.testOrderItem2
+
         let storage = localStorage.getItem("order")
         this.order = storage !== null ? storage.split(",") : [];
         console.log(this.order);
         console.log(typeof (this.order));
+
+        console.log(this.orders)
         await this.getProducts();
     }
   
