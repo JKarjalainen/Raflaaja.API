@@ -35,6 +35,10 @@
         </div>
     </div>
     <div v-if="tableitems == true">
+        <div>
+            <input type="text" v-model=newTable.size>
+            <button @click="addTable()">Add</button>
+        </div>
         <div v-if="tables.length < 1" style="margin-top: 80px">You have no tables</div>
         <div v-for="table in tables" v-bind:key="table" class="prod">
             Table number {{table.tableNumber}}
@@ -74,7 +78,8 @@ export default {
             menuitems: false,
             tableitems: false,
             orderitems: false,
-            newProduct: {}
+            newProduct: {},
+            newTable: {}
         }
     },
     methods: {
@@ -156,6 +161,17 @@ export default {
             const response = await fetch("https://localhost:5001/api/products/", {
                 method: "POST",
                 body: JSON.stringify(this.newProduct),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            console.log(await response.json());
+        },
+        async addTable() {
+            this.newTable.size = +this.newTable.size;
+            const response = await fetch("https://localhost:5001/api/tables/", {
+                method: "POST",
+                body: JSON.stringify(this.newTable),
                 headers: {
                     "Content-Type": "application/json"
                 }
