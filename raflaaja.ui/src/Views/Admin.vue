@@ -31,9 +31,10 @@
     <div v-if="tableitems == true">
         <div v-if="tables.length < 1" style="margin-top: 80px">You have no tables</div>
         <div v-for="table in tables" v-bind:key="table" class="prod">
-            <h><i>{{ table.name }}</i></h>
-            <p>{{ table.description }}</p>
-            <p>{{ table.price }}€</p>
+            Table number {{table.tableNumber}}
+            Table size <input type="text" v-model=table.size>
+            <button @click="modifyTable(table)">Set changes</button>
+            <button @click="DeleteItem($event)">Delete</button>
         </div>
     </div>
     <div v-if="orderitems == true">
@@ -127,6 +128,21 @@ export default {
             });
             console.log(await response.json());
             console.log(product)
+        },
+        async getTables() {
+            const response = await fetch("https://localhost:5001/api/tables/");
+            this.tables = await response.json();
+        },
+        async modifyTable(table) {
+            table.size = +table.size;
+            const response = await fetch("https://localhost:5001/api/tables/" + table.tableNumber, {
+                method: "PUT",
+                body: JSON.stringify(table),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            console.log(await response.json());
         }
 
 
@@ -136,6 +152,7 @@ export default {
         await this.getOrders();
         console.log(this.orders)
         await this.getProducts();
+        await this.getTables();
     }
 
 }
