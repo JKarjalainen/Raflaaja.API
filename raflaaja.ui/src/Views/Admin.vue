@@ -19,6 +19,12 @@
         </div>
     </div>
     <div v-if="menuitems == true">
+        <div>
+            <input type="text" v-model=newProduct.name>
+            <input type="text" v-model=newProduct.description>
+            <input type="text" v-model=newProduct.price>
+            <button @click="addProduct()">Add</button>
+        </div>
         <div v-if="products.length < 1" style="margin-top: 80px">You have no menu items</div>
         <div v-for="product in products" v-bind:key="product" class="prod">
             <input type="text" v-model=product.name>
@@ -68,6 +74,7 @@ export default {
             menuitems: false,
             tableitems: false,
             orderitems: false,
+            newProduct: {}
         }
     },
     methods: {
@@ -138,6 +145,17 @@ export default {
             const response = await fetch("https://localhost:5001/api/tables/" + table.tableNumber, {
                 method: "PUT",
                 body: JSON.stringify(table),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            console.log(await response.json());
+        },
+        async addProduct() {
+            this.newProduct.price = +this.newProduct.price;
+            const response = await fetch("https://localhost:5001/api/products/", {
+                method: "POST",
+                body: JSON.stringify(this.newProduct),
                 headers: {
                     "Content-Type": "application/json"
                 }
