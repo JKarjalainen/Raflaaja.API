@@ -31,7 +31,7 @@
             <input type="text" v-model=product.description>
             <input type="text" v-model=product.price>
             <button @click="modifyProduct(product)">Set changes</button>
-            <button @click="DeleteItem($event)">Delete</button>
+            <button @click="deleteProduct(product.productId)">Delete</button>
         </div>
     </div>
     <div v-if="tableitems == true">
@@ -44,7 +44,7 @@
             Table number {{table.tableNumber}}
             Table size <input type="text" v-model=table.size>
             <button @click="modifyTable(table)">Set changes</button>
-            <button @click="DeleteItem($event)">Delete</button>
+            <button @click="deleteTable(table.tableNumber)">Delete</button>
         </div>
     </div>
     <div v-if="orderitems == true">
@@ -177,6 +177,19 @@ export default {
                 }
             });
             console.log(await response.json());
+        },
+        async deleteProduct(id) {
+            const response = await fetch("https://localhost:5001/api/products/" + id, {
+                method: "DELETE",
+                body: JSON.stringify(this.newProduct),
+            });
+            console.log(await response.json());
+        },
+        async deleteTable(id) {
+            const response = await fetch("https://localhost:5001/api/tables/" + id, {
+                method: "DELETE",
+            });
+            console.log(await response.json());
         }
 
 
@@ -187,7 +200,8 @@ export default {
         console.log(this.orders)
         await this.getProducts();
         await this.getTables();
-    }
+    },
+
 
 }
 </script>
