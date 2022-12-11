@@ -39,11 +39,12 @@ components: {NavBar}
         font-size: 18px;
     }
     #page_container{
-        height:90vh;
+        height:98.5vh;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        background-color: #d9b99b;
     }
     .form-field{
         display: flex;
@@ -53,9 +54,12 @@ components: {NavBar}
     label{
         text-align: center;
         margin-bottom: 10px;
+        font-size: 20px;
     }
     input[type="text"]{
         border: 3px solid #000;
+        font-size: 15px;
+        padding: 5px;
     }
     input[type="text"]:focus-visible{
         border-color: rgb(15, 108, 221) !important;
@@ -74,21 +78,27 @@ components: {NavBar}
         display: flex;
         justify-content: center;
     }
-    #submit{
-        font-family:Helvetica;
+
+    #submit {
+        font-family: 'Staatliches', cursive;  
         font-size: 30px;
         letter-spacing: 2px;
         text-decoration: none;
-        text-transform: uppercase;
         color: #000;
         cursor: pointer;
         border: 3px solid;
         padding: 0.25em 0.5em;
-        box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
         position: relative;
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
+        z-index: 2;
+        background: rgb(255, 255, 255);
     }
+    #submit:hover{
+        transition: .3s;
+        background-color: rgba(255, 255, 255, 0.324) ;
+    }
+
 
 </style>

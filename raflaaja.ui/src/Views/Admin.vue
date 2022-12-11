@@ -1,6 +1,6 @@
 <template>
     
-    <h2 style="text-align: center">Hello, Admin(username)</h2>
+    <h2 style="text-align: center; background: #d9b99b; margin: 0; padding-bottom: 20px; padding-top: 20px;">Hello, Admin(username)</h2>
     <div class="flex-container">
       <div class="card">
         <div class="container">
@@ -38,9 +38,9 @@
     </div>
     <div v-if="orderitems == true">
       <div v-if="orders.length < 1" style="margin-top: 80px">You have no orders</div>
-      <div v-for="order in orders" v-bind:key="order" class="prod">
+      <div v-for="order in orders" v-bind:key="order" class="order">
         <h><i>{{ order.username }}</i></h>
-        <div v-for="product in order.products" v-bind:key="product" class="prod">
+        <div v-for="product in order.products" v-bind:key="product" class="order">
           <h><i>{{ product.name }}</i></h>
           <p>{{ product.description }}</p>
           <p>{{ product.price }}€</p>
@@ -178,11 +178,26 @@ export default {
 
 <style scoped>
 
+.order{
+  background: #d9b99b;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 33%;
+  margin: 10px auto 0 auto;
+}
+
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
-}
+  padding-bottom: 10px;
+  background: #d9b99b;
 
+}
+.card{
+  box-shadow: none !important;
+}
 .flex-container > div {
   text-align: center;
   font-size: 30px;
@@ -204,6 +219,17 @@ export default {
 
 div {
   font-size: 20px;
+}
+
+.prod{
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
+.prod > *{
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .hero-image {
@@ -233,9 +259,18 @@ h1 {
   font-family:Helvetica;
   font-size: 60px;
 }
-
+input[type="text"]{
+        border: 3px solid #000;
+        font-size: 15px;
+        padding:5px;
+    }
+    input[type="text"]:focus-visible{
+        border-color: rgb(15, 108, 221) !important;
+        transition: .3s ease-in;
+        outline: none !important;
+    }
 button {
-  font-family:Helvetica;
+  font-family: 'Staatliches', cursive;
   font-size: 30px;
   letter-spacing: 2px;
   text-decoration: none;
@@ -244,7 +279,6 @@ button {
   cursor: pointer;
   border: 3px solid;
   padding: 0.25em 0.5em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
   position: relative;
   user-select: none;
   -webkit-user-select: none;

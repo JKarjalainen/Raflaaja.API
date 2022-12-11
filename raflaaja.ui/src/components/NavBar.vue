@@ -19,11 +19,14 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #3a3a3a;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
 }
 
 li {
@@ -40,5 +43,6 @@ li a {
 
 li a:hover {
     background-color: #111;
+    transition: .3s;
 }
 </style>
