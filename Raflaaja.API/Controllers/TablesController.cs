@@ -45,6 +45,7 @@ namespace Raflaaja.API.Controllers
             Table t = db.Tables.Where(x => x.TableNumber == id).FirstOrDefault();
             t.TableNumber = value.TableNumber;
             t.Size = value.Size;
+            db.SaveChanges();
         }
 
         // DELETE api/<TablesController>/5
