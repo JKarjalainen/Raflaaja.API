@@ -1,8 +1,14 @@
 <template>
     <nav-bar></nav-bar>
   <div class="hero-image">
+    <div id="overlay"></div>
+
     <div class="hero-text">
+<<<<<<< HEAD
       <h1 style="font-size:50px; -webkit-text-stroke: 1.5px black;" >{{ $t("message.reserve") }}</h1>
+=======
+      <h1>Varaa pöytä</h1>
+>>>>>>> 1093fb480b9c22fdcfa633a83a23c3193951bd43
     </div>
   </div>
   <div class="varaus">
@@ -32,6 +38,10 @@
   <footer-bar></footer-bar>
 
 </template>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+</style>
 
 <script>
 import NavBar from "@/components/NavBar";
@@ -137,8 +147,16 @@ p {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  margin-top: 30px;
-
+}
+#overlay{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  top: 0;
+  right: 0;
+  z-index: 0;
+  opacity: 0.4;
 }
 router-link {
   text-decoration: none;
@@ -153,8 +171,9 @@ router-link {
   color: white;
 }
 h1 {
-  font-family:Helvetica;
-  font-size: 30px;
+  font-size: 60px;
+  font-family: 'Staatliches', cursive;  
+  text-shadow: #000 0px 0px 8px;
 }
 input, select {
   width: 51%;

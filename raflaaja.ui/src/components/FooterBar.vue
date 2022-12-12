@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <p>Tekijät: Antti Kemppinen ja Jetro Karjalainen</p>
+    <p>Tekijät: Antti Kemppinen, Jetro Karjalainen, Jami Jokinen ja Tomi Mauno</p>
     <p>raflaajaoy@gmail.com</p>
   </footer>
 </template>
@@ -13,7 +13,7 @@ export default {
 
 <style scoped>
 footer {
-  background-color: #333;
+  background-color: #3a3a3a;
   color: white;
   margin: 0;
   padding: 0;
@@ -24,7 +24,10 @@ footer {
   text-decoration: none;
   position: relative;
   bottom: 0;
-  width: 100%;
+  margin-top: 30px;
+  margin-top: auto;
+  width: -moz-available;
+  width: -webkit-fill-available
 }
 
 </style>

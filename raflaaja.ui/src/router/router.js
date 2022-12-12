@@ -5,6 +5,8 @@ import ShoppingCart from "@/Views/ShoppingCart";
 import RealHomePage from "@/Views/RealHomePage";
 import AdminPage from "@/Views/Admin"
 import ReservationsContent from "@/components/ReservationsContent";
+import LoginPage from "@/Views/Login";
+import SignUpPage from "@/Views/Sign-up";
 
 const routes = [
     {path: "/menu", component: HomePage},
@@ -12,7 +14,9 @@ const routes = [
     {path: "/shoppingcart", component: ShoppingCart},
     {path: "/", component: RealHomePage},
     {path: "/admin", component: AdminPage},
-    {path: "/admin/reservations", component: ReservationsContent}
+    {path: "/admin/reservations", component: ReservationsContent},
+    {path: "/login",component: LoginPage},
+    {path: "/sign-up",component: SignUpPage}
 ]
 
 const router = createRouter({

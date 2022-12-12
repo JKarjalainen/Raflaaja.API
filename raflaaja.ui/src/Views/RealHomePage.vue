@@ -1,7 +1,9 @@
 <template>
     <nav-bar></nav-bar>
     <div class="hero-image">
+      <div id="overlay"></div>
       <div class="hero-text">
+<<<<<<< HEAD
         <h1 style="font-size:100px; -webkit-text-stroke: 3px black;" >Raflaaja</h1>
         <button><router-link to="/menu" style="text-decoration: none; color: black">{{ $t("message.orderbutton") }}!</router-link></button>
       </div>
@@ -13,22 +15,37 @@
           <h4><b>Pepperoni pizza</b></h4>
           <p>vitun hyvä pizza</p>
           <p>9€</p>
-        </div>
+=======
+        <h1>Raflaaja</h1>
+        <button><router-link to="/menu" style="text-decoration: none; color: black">Tilaa nyt!</router-link></button>
       </div>
-      <div class="card">
-        <div class="container">
-          <h4><b>Talon burgeri</b></h4>
-          <p>vitun hyvä bursa</p>
-          <p>8€</p>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <h2>Suosituimmat tuotteemme</h2>
+      <div class="flex-container">
+        <div class="card">
+          <div class="container">
+            <h4><b>Pepperoni pizza</b></h4>
+            <p>kova pizza</p>
+            <p>9€</p>
+          </div>
+>>>>>>> 1093fb480b9c22fdcfa633a83a23c3193951bd43
         </div>
-      </div>
-      <div class="card">
-        <div class="container">
-          <h4><b>Naudan ulkofile</b></h4>
-          <p>vitun hyvä pihvi</p>
-          <p>17€</p>
+        <div class="card">
+          <div class="container">
+            <h4><b>Talon burgeri</b></h4>
+            <p>kova bursa</p>
+            <p>8€</p>
+          </div>
         </div>
-      </div>
+        <div class="card">
+          <div class="container">
+            <h4><b>Naudan ulkofile</b></h4>
+            <p>kova pihvi</p>
+            <p>17€</p>
+          </div>
+        </div>
+    </div>
     </div>
 
   <footer-bar></footer-bar>
@@ -44,12 +61,17 @@ export default {
 }
 </script>
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+</style>
+
 <style scoped>
 
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
 }
+
 
 .flex-container > div {
   text-align: center;
@@ -82,8 +104,17 @@ div {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  margin-top: 30px;
 
+}
+#overlay{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  top: 0;
+  right: 0;
+  z-index: 0;
+  opacity: 0.4;
 }
 router-link {
   text-decoration: none;
@@ -97,26 +128,46 @@ router-link {
   transform: translate(-50%, -50%);
   color: white;
 }
+
+@media only screen and (max-width: 500px) {
+  h1 {
+    font-size: 70px !important;
+  }
+}
+
 h1 {
-  font-family:Helvetica;
-  font-size: 60px;
+  font-family: 'Staatliches', cursive;  
+  text-shadow: #000 0px 0px 8px;
+  font-size: 125px;
+  text-transform: uppercase;
+ 
+  z-index: 2;
+}
+h2{
+  text-align: center;
+  color: #3a3a3a;
+  margin-top: 20px;
 }
 
 button {
-  font-family:Helvetica;
+  font-family: 'Staatliches', cursive;  
   font-size: 30px;
   letter-spacing: 2px;
   text-decoration: none;
-  text-transform: uppercase;
   color: #000;
   cursor: pointer;
   border: 3px solid;
   padding: 0.25em 0.5em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
   position: relative;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  z-index: 2;
+  background: rgb(255, 255, 255);
+}
+button:hover{
+  transition: .3s;
+  background-color: rgba(255, 255, 255, 0.324) ;
 }
 
 button:active {
