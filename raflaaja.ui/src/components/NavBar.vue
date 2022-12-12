@@ -1,17 +1,29 @@
 <template>
     <ul>
-        <li><router-link to="/">Koti</router-link></li>
-        <li><router-link to="/menu">Ruokalista</router-link></li>
-        <li><router-link to="/reservations">Varaa pöytä</router-link></li>
-        <li><router-link to="/shoppingcart">Tilauksesi</router-link></li>
+        <li><router-link to="/">{{ $t("message.home") }}</router-link></li>
+        <li><router-link to="/menu">{{ $t("message.menu") }}</router-link></li>
+        <li><router-link to="/reservations">{{ $t("message.reserve") }}</router-link></li>
+        <li><router-link to="/shoppingcart">{{ $t("message.orders") }}</router-link></li>
+        <li v-if="$i18n.locale === 'en'" @click="setLocale('fi')"><a>Finnish</a></li>
+        <li v-if="$i18n.locale === 'fi'" @click="setLocale('en')"><a>English</a></li>
     </ul>
 </template>
 
 <script>
 export default {
-    name: "NavBar"
+    name: "NavBar",
+    methods: {
+        setLocale(locale) {
+        this.$i18n.locale = locale
+        this.$router.push({
+          params: { lang: locale }
+        })
+        this.hideDropdown()
+      }
+    }
 }
 </script>
+
 
 <style scoped>
 ul {
@@ -44,5 +56,6 @@ li a {
 li a:hover {
     background-color: #111;
     transition: .3s;
+    cursor: pointer;
 }
 </style>

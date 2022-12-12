@@ -3,7 +3,7 @@
   <div class="hero-image">
     <div id="overlay"></div>
     <div class="hero-text">
-      <h1>Menu</h1>
+      <h1>{{ $t("message.menu") }}</h1>
     </div>
   </div>
     <menu-list />

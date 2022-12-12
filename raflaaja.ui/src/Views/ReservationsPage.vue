@@ -4,18 +4,18 @@
     <div id="overlay"></div>
 
     <div class="hero-text">
-      <h1>Varaa pöytä</h1>
+      <h1>{{ $t("message.reserve") }}</h1>
     </div>
   </div>
   <div class="varaus">
-    <h3>Päivänmäärä</h3>
+    <h3>{{ $t("message.date") }}</h3>
     <input type="date" v-model="reservationDate" />
-    <h3>Kellonaika</h3>
+    <h3>{{ $t("message.time") }}</h3>
     <input type="time" min="09:00" max="22:00" v-model="reservationTime"/>
-    <h3>Pöytä</h3>
+    <h3>{{ $t("message.table") }}</h3>
     <select v-model="wantedTable" name="cars">
       <template v-for="table in tables" :key="table.tableNumber">
-        <option :value="table.tableNumber">Pöytä {{table.tableNumber}} koko {{table.size}} henkilöä</option>
+        <option :value="table.tableNumber">{{ $t("message.table") }} {{table.tableNumber}} koko {{table.size}} henkilöä</option>
       </template>
     </select>
     <div v-if="validReservation">
@@ -25,7 +25,7 @@
 
     <div v-else>
 
-      <p>Tämä aika on jo varattu tai et ole täyttänyt kenttiä</p>
+      <p>{{ $t("message.reservationmessage") }}</p>
     </div>
     <br>
     <br>

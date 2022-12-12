@@ -4,9 +4,10 @@
       <div id="overlay"></div>
       <div class="hero-text">
         <h1>Raflaaja</h1>
-        <button><router-link to="/menu" style="text-decoration: none; color: black">Tilaa nyt!</router-link></button>
+        <button><router-link to="/menu">{{ $t("message.orderbutton") }}!</router-link></button>
       </div>
     </div>
+    <h2 style="text-align: center">{{ $t("message.popular") }}</h2>
     <div style="margin-bottom: 20px;">
       <h2>Suosituimmat tuotteemme</h2>
       <div class="flex-container">
