@@ -3,10 +3,10 @@
     <div class="hero-image">
       <div class="hero-text">
         <h1 style="font-size:100px; -webkit-text-stroke: 3px black;" >Raflaaja</h1>
-        <button><router-link to="/menu" style="text-decoration: none; color: black">Tilaa nyt!</router-link></button>
+        <button><router-link to="/menu" style="text-decoration: none; color: black">{{ $t("message.orderbutton") }}!</router-link></button>
       </div>
     </div>
-    <h2 style="text-align: center">Suosituimmat tuotteemme</h2>
+    <h2 style="text-align: center">{{ $t("message.popular") }}</h2>
     <div class="flex-container">
       <div class="card">
         <div class="container">

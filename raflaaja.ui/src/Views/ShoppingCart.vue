@@ -2,19 +2,19 @@
     <nav-bar></nav-bar>
   <div class="hero-image">
     <div class="hero-text">
-      <h1 style="font-size:50px; -webkit-text-stroke: 1.5px black;" >Tilauksesi</h1>
+      <h1 style="font-size:50px; -webkit-text-stroke: 1.5px black;" >{{ $t("message.orders") }}</h1>
     </div>
   </div>
   <div class="bg">
-    <div v-if="products.length < 1" style="margin-top: 80px">Ostoskorisi on tyhjä</div>
+    <div v-if="products.length < 1" style="margin-top: 80px">{{ $t("message.emptyshoppingcart") }}</div>
     <div v-for="product in products" v-bind:key="product" class="prod">
       <h><i>{{ product.name }}</i></h>
       <p>{{ product.description }}</p>
       <p>{{ product.price }}€</p>
     </div>
     <div v-if="order.length > 0">
-      <p>Yhteensä: {{ getFullPrice() }}€</p>
-      <button @click="addOrder()">Tilaa</button>
+      <p>{{ $t("message.finalsum") }}: {{ getFullPrice() }}€</p>
+      <button @click="addOrder()">{{ $t("message.orderbutton") }}!</button>
     </div>
   </div>
   <footer-bar></footer-bar>

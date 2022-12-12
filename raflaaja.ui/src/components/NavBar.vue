@@ -1,17 +1,29 @@
 <template>
     <ul>
-        <li><router-link to="/">Koti</router-link></li>
-        <li><router-link to="/menu">Ruokalista</router-link></li>
-        <li><router-link to="/reservations">Varaa pöytä</router-link></li>
-        <li><router-link to="/shoppingcart">Tilauksesi</router-link></li>
+        <li><router-link to="/">{{ $t("message.home") }}</router-link></li>
+        <li><router-link to="/menu">{{ $t("message.menu") }}</router-link></li>
+        <li><router-link to="/reservations">{{ $t("message.reserve") }}</router-link></li>
+        <li><router-link to="/shoppingcart">{{ $t("message.orders") }}</router-link></li>
+        <button @click="setLocale('fi')">Finnish</button>
+        <button @click="setLocale('en')">English</button>
     </ul>
 </template>
 
 <script>
 export default {
-    name: "NavBar"
+    name: "NavBar",
+    methods: {
+        setLocale(locale) {
+        this.$i18n.locale = locale
+        this.$router.push({
+          params: { lang: locale }
+        })
+        this.hideDropdown()
+      }
+    }
 }
 </script>
+
 
 <style scoped>
 ul {
