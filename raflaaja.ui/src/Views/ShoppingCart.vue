@@ -4,7 +4,7 @@
     <div id="overlay"></div>
 
     <div class="hero-text">
-      <h1 style="font-size:50px; -webkit-text-stroke: 1.5px black;" >{{ $t("message.orders") }}</h1>
+      <h1>{{ $t("message.orders") }}</h1>
     </div>
   </div>
   <div class="bg">

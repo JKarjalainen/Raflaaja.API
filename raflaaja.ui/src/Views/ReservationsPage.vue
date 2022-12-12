@@ -4,11 +4,7 @@
     <div id="overlay"></div>
 
     <div class="hero-text">
-<<<<<<< HEAD
-      <h1 style="font-size:50px; -webkit-text-stroke: 1.5px black;" >{{ $t("message.reserve") }}</h1>
-=======
-      <h1>Varaa pöytä</h1>
->>>>>>> 1093fb480b9c22fdcfa633a83a23c3193951bd43
+      <h1>{{ $t("message.reserve") }}</h1>
     </div>
   </div>
   <div class="varaus">

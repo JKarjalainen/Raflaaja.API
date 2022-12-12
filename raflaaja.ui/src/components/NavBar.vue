@@ -4,8 +4,8 @@
         <li><router-link to="/menu">{{ $t("message.menu") }}</router-link></li>
         <li><router-link to="/reservations">{{ $t("message.reserve") }}</router-link></li>
         <li><router-link to="/shoppingcart">{{ $t("message.orders") }}</router-link></li>
-        <button @click="setLocale('fi')">Finnish</button>
-        <button @click="setLocale('en')">English</button>
+        <li v-if="$i18n.locale === 'en'" @click="setLocale('fi')"><a>Finnish</a></li>
+        <li v-if="$i18n.locale === 'fi'" @click="setLocale('en')"><a>English</a></li>
     </ul>
 </template>
 

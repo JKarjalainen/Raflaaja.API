@@ -3,7 +3,7 @@
   <div class="hero-image">
     <div id="overlay"></div>
     <div class="hero-text">
-      <h1 style="font-size:50px; -webkit-text-stroke: 1.5px black;" >{{ $t("message.menu") }}</h1>
+      <h1>{{ $t("message.menu") }}</h1>
     </div>
   </div>
     <menu-list />

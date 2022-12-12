@@ -3,23 +3,11 @@
     <div class="hero-image">
       <div id="overlay"></div>
       <div class="hero-text">
-<<<<<<< HEAD
-        <h1 style="font-size:100px; -webkit-text-stroke: 3px black;" >Raflaaja</h1>
-        <button><router-link to="/menu" style="text-decoration: none; color: black">{{ $t("message.orderbutton") }}!</router-link></button>
+        <h1>Raflaaja</h1>
+        <button><router-link to="/menu">{{ $t("message.orderbutton") }}!</router-link></button>
       </div>
     </div>
     <h2 style="text-align: center">{{ $t("message.popular") }}</h2>
-    <div class="flex-container">
-      <div class="card">
-        <div class="container">
-          <h4><b>Pepperoni pizza</b></h4>
-          <p>vitun hyvä pizza</p>
-          <p>9€</p>
-=======
-        <h1>Raflaaja</h1>
-        <button><router-link to="/menu" style="text-decoration: none; color: black">Tilaa nyt!</router-link></button>
-      </div>
-    </div>
     <div style="margin-bottom: 20px;">
       <h2>Suosituimmat tuotteemme</h2>
       <div class="flex-container">
@@ -29,7 +17,6 @@
             <p>kova pizza</p>
             <p>9€</p>
           </div>
->>>>>>> 1093fb480b9c22fdcfa633a83a23c3193951bd43
         </div>
         <div class="card">
           <div class="container">
