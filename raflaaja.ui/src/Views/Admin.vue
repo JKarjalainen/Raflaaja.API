@@ -217,12 +217,18 @@ export default {
   width: 33%;
   margin: 10px auto 0 auto;
 }
-
+div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
   padding-bottom: 10px;
   background: #d9b99b;
+  flex-direction: row;
 
 }
 .card{
@@ -295,6 +301,7 @@ input[type="text"]{
         border: 3px solid #000;
         font-size: 15px;
         padding:5px;
+        margin-top: 10px;
     }
     input[type="text"]:focus-visible{
         border-color: rgb(15, 108, 221) !important;
@@ -315,6 +322,7 @@ button {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin-top: 10px;
 }
 
 button:active {
