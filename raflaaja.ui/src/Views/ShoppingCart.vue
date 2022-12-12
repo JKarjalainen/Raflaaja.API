@@ -63,7 +63,7 @@ export default {
                 includedProductIds.push({productId: +prodId, amount: this.order.filter(id => id === prodId).length});
             }
             console.log({includedProductIds});
-            await fetch("https://localhost:44389/api/orders/", {
+            await fetch("https://localhost:5001/api/orders/", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
