@@ -56,5 +56,6 @@ li a {
 li a:hover {
     background-color: #111;
     transition: .3s;
+    cursor: pointer;
 }
 </style>
