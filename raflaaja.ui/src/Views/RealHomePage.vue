@@ -7,9 +7,8 @@
         <button><router-link to="/menu">{{ $t("message.orderbutton") }}!</router-link></button>
       </div>
     </div>
-    <h2 style="text-align: center">{{ $t("message.popular") }}</h2>
     <div style="margin-bottom: 20px;">
-      <h2>Suosituimmat tuotteemme</h2>
+      <h2>{{ $t("message.popular") }}</h2>
       <div class="flex-container">
         <div class="card">
           <div class="container">
@@ -161,6 +160,10 @@ button:active {
   box-shadow: 0px 0px 0px 0px;
   top: 5px;
   left: 5px;
+}
+button a{
+    color: #000 !important;
+    text-decoration: none;
 }
 
 @media (min-width: 768px) {
