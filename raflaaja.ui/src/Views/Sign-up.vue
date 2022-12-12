@@ -8,10 +8,10 @@
         </div>
         <div class="form-field">
             <label for="test2">Salasana</label>
-            <input id="test2" type="text">
+            <input id="test2" type="password">
         </div>
         <div id="submit_container">
-            <input id="submit" type="submit" value="Luo käyttäjä">
+            <input id="submit" type="submit" @click="$router.push('/')" value="Luo käyttäjä">
         </div>
     </form> 
 </div>  
@@ -50,7 +50,17 @@ components: {NavBar}
         font-size: 15px;
         padding: 5px;
     }
+    input[type="password"]{
+        border: 3px solid #000;
+        font-size: 15px;
+        padding: 5px;
+    }
     input[type="text"]:focus-visible{
+        border-color: rgb(15, 108, 221) !important;
+        transition: .3s ease-in;
+        outline: none !important;
+    }
+    input[type="password"]:focus-visible{
         border-color: rgb(15, 108, 221) !important;
         transition: .3s ease-in;
         outline: none !important;
