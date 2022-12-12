@@ -4,14 +4,14 @@
         <h1>Luo käyttäjä</h1>
         <div class="form-field">
             <label for="test">Käyttäjänimi</label>
-            <input id="test" type="text">
+            <input id="test" type="text" v-model="username">
         </div>
         <div class="form-field">
             <label for="test2">Salasana</label>
             <input id="test2" type="password">
         </div>
         <div id="submit_container">
-            <input id="submit" type="submit" @click="$router.push('/')" value="Luo käyttäjä">
+            <input id="submit" type="submit" @click="logIn()" value="Luo käyttäjä">
         </div>
     </form> 
 </div>  
@@ -23,7 +23,18 @@ import NavBar from "@/components/NavBar";
 components: {NavBar}
 */
     export default{
-        name: "SignUpPage"
+        name: "SignUpPage",
+        data() {
+            return {
+                username: ""
+            }
+        },
+        methods: {
+            logIn() {
+                localStorage.setItem("username", this.username);
+                this.$router.push('/');
+            }
+        }
     }
 </script>
 <style scoped>

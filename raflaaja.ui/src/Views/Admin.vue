@@ -1,6 +1,6 @@
 <template>
     
-    <h2 style="text-align: center; background: #d9b99b; margin: 0; padding-bottom: 20px; padding-top: 20px;">Hello, Admin(username)</h2>
+    <h2 style="text-align: center; background: #d9b99b; margin: 0; padding-bottom: 20px; padding-top: 20px;">Hello, {{username}}</h2>
     <div class="flex-container">
         <div class="card">
             <div class="container">
@@ -79,7 +79,8 @@ export default {
             tableitems: false,
             orderitems: false,
             newProduct: {},
-            newTable: {}
+            newTable: {},
+            username: "User"
         }
     },
     methods: {
@@ -190,6 +191,9 @@ export default {
                 method: "DELETE",
             });
             console.log(await response.json());
+        },
+        getUsername() {
+            this.username = localStorage.getItem("username");
         }
 
 
@@ -200,6 +204,7 @@ export default {
         console.log(this.orders)
         await this.getProducts();
         await this.getTables();
+        this.getUsername();
     },
 
 
