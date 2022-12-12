@@ -19,22 +19,32 @@
         </div>
     </div>
     <div v-if="menuitems == true">
+        <div>
+            <input type="text" v-model=newProduct.name>
+            <input type="text" v-model=newProduct.description>
+            <input type="text" v-model=newProduct.price>
+            <button @click="addProduct()">Add</button>
+        </div>
         <div v-if="products.length < 1" style="margin-top: 80px">You have no menu items</div>
         <div v-for="product in products" v-bind:key="product" class="prod">
             <input type="text" v-model=product.name>
             <input type="text" v-model=product.description>
             <input type="text" v-model=product.price>
             <button @click="modifyProduct(product)">Set changes</button>
-            <button @click="DeleteItem($event)">Delete</button>
+            <button @click="deleteProduct(product.productId)">Delete</button>
         </div>
     </div>
     <div v-if="tableitems == true">
+        <div>
+            <input type="text" v-model=newTable.size>
+            <button @click="addTable()">Add</button>
+        </div>
         <div v-if="tables.length < 1" style="margin-top: 80px">You have no tables</div>
         <div v-for="table in tables" v-bind:key="table" class="prod">
             Table number {{table.tableNumber}}
             Table size <input type="text" v-model=table.size>
             <button @click="modifyTable(table)">Set changes</button>
-            <button @click="DeleteItem($event)">Delete</button>
+            <button @click="deleteTable(table.tableNumber)">Delete</button>
         </div>
     </div>
     <div v-if="orderitems == true">
@@ -68,6 +78,8 @@ export default {
             menuitems: false,
             tableitems: false,
             orderitems: false,
+            newProduct: {},
+            newTable: {}
         }
     },
     methods: {
@@ -143,6 +155,41 @@ export default {
                 }
             });
             console.log(await response.json());
+        },
+        async addProduct() {
+            this.newProduct.price = +this.newProduct.price;
+            const response = await fetch("https://localhost:5001/api/products/", {
+                method: "POST",
+                body: JSON.stringify(this.newProduct),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            console.log(await response.json());
+        },
+        async addTable() {
+            this.newTable.size = +this.newTable.size;
+            const response = await fetch("https://localhost:5001/api/tables/", {
+                method: "POST",
+                body: JSON.stringify(this.newTable),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            console.log(await response.json());
+        },
+        async deleteProduct(id) {
+            const response = await fetch("https://localhost:5001/api/products/" + id, {
+                method: "DELETE",
+                body: JSON.stringify(this.newProduct),
+            });
+            console.log(await response.json());
+        },
+        async deleteTable(id) {
+            const response = await fetch("https://localhost:5001/api/tables/" + id, {
+                method: "DELETE",
+            });
+            console.log(await response.json());
         }
 
 
@@ -153,7 +200,8 @@ export default {
         console.log(this.orders)
         await this.getProducts();
         await this.getTables();
-    }
+    },
+
 
 }
 </script>
