@@ -114,6 +114,13 @@ router-link {
   transform: translate(-50%, -50%);
   color: white;
 }
+
+@media only screen and (max-width: 500px) {
+  h1 {
+    font-size: 70px !important;
+  }
+}
+
 h1 {
   font-family: 'Staatliches', cursive;  
   text-shadow: #000 0px 0px 8px;
