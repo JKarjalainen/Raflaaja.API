@@ -62,3 +62,6 @@ CREATE TABLE OrderIncludes
   FOREIGN KEY (OrderId) REFERENCES [Order](OrderId),
   FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
 );
+
+INSERT INTO [User] (FirstName, LastName, AccessLevel)
+VALUES ('Matti', 'Meikäläinen', 100);
